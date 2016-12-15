@@ -168,6 +168,10 @@ var appServer = function(config) {
 		//We need the rawBody for request verification
 		self.express.use(function(req, res, next)
 		{
+      if (req._body) {
+        return next();
+      }
+
 			// mark the request body as already having been parsed so it's ignored by
 			// other body parser middlewares
 			req._body = true;
